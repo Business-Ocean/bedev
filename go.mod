@@ -1,3 +1,3 @@
-module com.github/Business-Ocean/bedev
+module github.com/business-ocean/bedev
 
 go 1.20
