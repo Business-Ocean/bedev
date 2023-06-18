@@ -4,8 +4,12 @@ This file is part of CLI application foo.
 */
 package main
 
-import "github.com/business-ocean/bedev/cmd"
+import (
+	"github.com/business-ocean/bedev/app"
+)
 
 func main() {
-	cmd.Execute()
+
+	_ = app.Bedev.Execute()
+
 }
