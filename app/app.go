@@ -47,7 +47,7 @@ func newBedevApp() bedevApp {
 	cmd := bedevApp{
 		Command: rootCmd,
 	}
-	cmd.AddCommand(console.GetSubCommands(module.CommonModules)...)
+	cmd.AddCommand(console.GetSubCommands(module.CMDModules)...)
 	return cmd
 }
 

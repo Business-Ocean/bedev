@@ -1,10 +1,10 @@
 package module
 
 import (
-	"github.com/sirupsen/logrus"
+	"github.com/fatih/color"
 	"go.uber.org/fx"
 )
 
-var CommonModules = fx.Options(
-	fx.Provide(logrus.New),
+var CMDModules = fx.Options(
+	fx.Provide(color.New),
 )
