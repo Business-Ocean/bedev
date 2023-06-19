@@ -15,8 +15,13 @@ To install Bedev, follow these steps:
 
 Bedev provides the following commands:
 
-### 1. `bedev do`
+## Supported Language
+ - golang
+| - flutter
+| - node (todo) 
 
+### 1. `bedev do`
+----
 This command allows you to perform specific tasks. For example, you can use it to rename files in a folder in a certain format.
 
 Example:
@@ -72,6 +77,16 @@ This command allows you to convert files from one format to another. For instanc
 Example:
 bedev convert image.png --format jpeg
 
+
+
+### 1. `bedev generate`
+
+This command allows you to perform generate several thing.
+- Generate UUID base of time for user given desire input
+- Generate test replication of given directory into specefic test directory (help to cover TDD projects and test cretical software) ex:  route/do_something.go will generate empty test file in test/route/do_something_test.go 
+
+Example:
+bedev do rename-files --folder path/to/folder --format new-file-{{index}}.txt
 
 
 ## Contributing
