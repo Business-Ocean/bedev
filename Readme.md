@@ -79,7 +79,7 @@ bedev convert image.png --format jpeg
 
 
 
-### 1. `bedev generate`
+### 8. `bedev generate`
 
 This command allows you to perform generate several thing.
 - Generate UUID base of time for user given desire input
