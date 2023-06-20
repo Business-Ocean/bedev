@@ -7,7 +7,7 @@ import (
 	"github.com/business-ocean/bedev/cmd"
 	"github.com/business-ocean/bedev/common"
 	"github.com/business-ocean/bedev/common/itemselect"
-	"github.com/business-ocean/bedev/console/env/sample"
+	"github.com/business-ocean/bedev/console/env/systemenv"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -16,7 +16,7 @@ import (
 )
 
 var cmds = map[string]cmd.Command{
-	"env": sample.NewSampleCommand(),
+	"systemenv": systemenv.NewSampleCommand(),
 }
 
 // GetSubCommands gives a list of sub commands

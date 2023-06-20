@@ -1,5 +1,8 @@
 package env
 
-import "go.uber.org/fx"
+import (
+	"github.com/business-ocean/bedev/module"
+	"go.uber.org/fx"
+)
 
-var envModules = fx.Options()
+var envModules = fx.Options(fx.Provide(module.NewColorConsole))
