@@ -16,9 +16,7 @@ func (gd *systemenv) Setup(cmd *cobra.Command) {}
 func (gd *systemenv) Run() cmd.CommandRunner {
 
 	return func(c *color.Color) {
-
 		c.Printf("\n%v\n", "Fetching you env variable")
-
 		for _, e := range os.Environ() {
 			pair := strings.SplitN(e, "=", -1)
 
@@ -35,7 +33,6 @@ func (gd *systemenv) Run() cmd.CommandRunner {
 				c.Println()
 				continue
 			}
-
 			c.Add(color.FgBlue)
 			c.Print(key)
 			c.Print(" = ")
