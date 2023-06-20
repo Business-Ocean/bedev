@@ -11,7 +11,7 @@ import (
 	"github.com/business-ocean/bedev/console/generate/placeholder"
 	"github.com/business-ocean/bedev/console/generate/testfolder"
 
-	"github.com/business-ocean/bedev/console/generate/uuid"
+	"github.com/business-ocean/bedev/console/generate/genid"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -20,14 +20,14 @@ import (
 )
 
 var cmds = map[string]cmd.Command{
-	"uuid":        uuid.NewUUIDCommand(),
+	"uuid":        genid.NewUUIDCommand(),
 	"gendata":     gendata.NewGenDataCommand(),
 	"placeholder": placeholder.NewPlaceHolderCommand(),
 	"test_folder": testfolder.NewTestFolerCommand(),
 }
 
 // GetSubCommands gives a list of sub commands
-func GetSubCommands(opt fx.Option) []*cobra.Command {
+func getSubCommands(opt fx.Option) []*cobra.Command {
 	subCommands := make([]*cobra.Command, 0)
 	for name, cmd := range cmds {
 		subCommands = append(subCommands, common.WrapSubCommand(name, cmd, opt))
@@ -43,7 +43,7 @@ func (r *generate) Short() string {
 }
 
 func (r *generate) Setup(cmd *cobra.Command) {
-	cmd.AddCommand(GetSubCommands(Modules)...)
+	cmd.AddCommand(getSubCommands(generateModules)...)
 }
 
 func (r *generate) Run() cmd.CommandRunner {
@@ -55,7 +55,7 @@ func (r *generate) Run() cmd.CommandRunner {
 		m := itemselect.NewListSelect(items, func(choice string) {
 			command, ok := cmds[choice]
 			if ok {
-				common.ExecuteCmd(command, fx.Options())
+				common.ExecuteCmd(command, generateModules)
 			}
 		})
 		if _, err := tea.NewProgram(m).Run(); err != nil {

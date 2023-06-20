@@ -1,5 +1,8 @@
 package generate
 
-import "go.uber.org/fx"
+import (
+	"github.com/business-ocean/bedev/module"
+	"go.uber.org/fx"
+)
 
-var Modules = fx.Options()
+var generateModules = fx.Options(fx.Provide(module.NewColorConsole))

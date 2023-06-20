@@ -14,7 +14,7 @@ func (gd *testFolder) Setup(cmd *cobra.Command) {}
 func (gd *testFolder) Run() cmd.CommandRunner {
 
 	return func() {
-		fmt.Println("Hello gen Data")
+		fmt.Println("Hello test folder gen")
 	}
 }
 
