@@ -12,7 +12,6 @@ import (
 	"github.com/business-ocean/bedev/console/generate/testfolder"
 
 	"github.com/business-ocean/bedev/console/generate/uuid"
-	"github.com/business-ocean/bedev/module"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -44,7 +43,7 @@ func (r *generate) Short() string {
 }
 
 func (r *generate) Setup(cmd *cobra.Command) {
-	cmd.AddCommand(GetSubCommands(module.CMDModules)...)
+	cmd.AddCommand(GetSubCommands(Modules)...)
 }
 
 func (r *generate) Run() cmd.CommandRunner {
