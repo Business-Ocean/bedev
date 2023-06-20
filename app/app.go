@@ -38,17 +38,15 @@ If you're a developer, I encourage you to download Bedev and try it out. I think
 }
 
 // App root of the application
-type bedevApp struct {
+type BedevApp struct {
 	*cobra.Command
 }
 
 // NewApp creates new root command
-func newBedevApp() bedevApp {
-	cmd := bedevApp{
+func NewBedevApp() *BedevApp {
+	cmd := BedevApp{
 		Command: rootCmd,
 	}
 	cmd.AddCommand(console.GetSubCommands(module.CMDModules)...)
-	return cmd
+	return &cmd
 }
-
-var Bedev = newBedevApp()

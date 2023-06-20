@@ -11,6 +11,7 @@ import (
 	"github.com/business-ocean/bedev/console/generate/placeholder"
 	testfolder "github.com/business-ocean/bedev/console/generate/test_folder"
 	"github.com/business-ocean/bedev/console/generate/uuid"
+	"github.com/business-ocean/bedev/module"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/fatih/color"
@@ -42,6 +43,7 @@ func (r *generate) Short() string {
 }
 
 func (r *generate) Setup(cmd *cobra.Command) {
+	cmd.AddCommand(GetSubCommands(module.CMDModules)...)
 	// cmd.Flags().IntVarP(&r.num, "num", "n", 10, "length of random number to generate")
 }
 
@@ -57,5 +59,7 @@ func (r *generate) Run() cmd.CommandRunner {
 }
 
 func NewGenerateCommand() *generate {
-	return &generate{}
+	g := &generate{}
+
+	return g
 }
