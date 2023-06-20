@@ -12,16 +12,12 @@ import (
 )
 
 func main() {
-
-	// _ = app.Bedev.Execute()
-
 	fx.New(
 		fx.NopLogger,
 		fx.Options(
 			fx.Provide(app.NewBedevApp),
 			fx.Invoke(func(bedev *app.BedevApp) {
 				err := bedev.Execute()
-
 				if err == nil {
 					os.Exit(0)
 				}

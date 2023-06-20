@@ -14,7 +14,6 @@ func WrapSubCommand(name string, cmd cmd.Command, opt fx.Option) *cobra.Command 
 		Use:   name,
 		Short: cmd.Short(),
 		Run: func(c *cobra.Command, args []string) {
-			cmd.Run()
 			opts := fx.Options(
 				fx.Invoke(cmd.Run()),
 			)

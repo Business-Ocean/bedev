@@ -27,6 +27,7 @@ type ListModel struct {
 	list     list.Model
 	choice   string
 	quitting bool
+	Run      func(string) string
 }
 
 type itemDelegate struct{}
@@ -84,23 +85,21 @@ func (m ListModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m ListModel) View() string {
 	if m.choice != "" {
-		return quitTextStyle.Render(fmt.Sprintf("%s? Sounds good to me.", m.choice))
+		// quitTextStyle.Render(fmt.Sprintf("%s? Sounds good to me.", m.choice))
+		return m.Run(m.choice)
 	}
 	if m.quitting {
-		return quitTextStyle.Render("Not hungry? That’s cool.")
+
+		// quitTextStyle.Render("Not hungry? That’s cool.")
+
+		return m.Run(m.choice)
 	}
 	return "\n" + m.list.View()
 }
+
 func (i ListItem) FilterValue() string { return "" }
 
-func NewListSelect(items []list.Item) *ListModel {
-	// items := []list.Item{
-	// 	item("uuid"),
-	// 	item("placeholder"),
-	// 	item("test_folder"),
-	// 	item("data"),
-	// }
-
+func NewListSelect(items []list.Item, run func(string) string) ListModel {
 	const defaultWidth = 20
 	l := list.New(items, itemDelegate{}, defaultWidth, listHeight)
 	l.Title = "What do you want for generate?"
@@ -111,5 +110,6 @@ func NewListSelect(items []list.Item) *ListModel {
 	l.Styles.HelpStyle = helpStyle
 
 	m := ListModel{list: l}
-	return &m
+	m.Run = run
+	return m
 }

@@ -54,13 +54,18 @@ func (r *generate) Run() cmd.CommandRunner {
 		for key := range cmds {
 			items = append(items, itemselect.ListItem(key))
 		}
-
-		m := itemselect.NewListSelect(items)
+		m := itemselect.NewListSelect(items, func(choice string) string {
+			c.Printf("-------||---%v----||------->\n", choice)
+			command, ok := cmds[choice]
+			c.Printf("----------%v----------->\n", ok)
+			c.Printf("----------%v----------->\n", command)
+			command.Run()
+			return ""
+		})
 		if _, err := tea.NewProgram(m).Run(); err != nil {
 			fmt.Println("Error running program:", err)
 			os.Exit(1)
 		}
-
 	}
 }
 
