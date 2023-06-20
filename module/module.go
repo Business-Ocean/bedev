@@ -1,14 +1,13 @@
 package module
 
 import (
-	listselect "github.com/business-ocean/bedev/common/list_select"
 	"github.com/fatih/color"
 	"go.uber.org/fx"
 )
 
 var CMDModules = fx.Options(
 	fx.Provide(NewColorConsole),
-	fx.Provide(listselect.NewListSelect),
+	// fx.Provide(listselect.NewListSelect),
 )
 
 // ---------------------------------- ---------------------------------- ----------------------------------

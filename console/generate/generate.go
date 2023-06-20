@@ -6,13 +6,15 @@ import (
 
 	"github.com/business-ocean/bedev/cmd"
 	"github.com/business-ocean/bedev/common"
-	listselect "github.com/business-ocean/bedev/common/list_select"
-	gendata "github.com/business-ocean/bedev/console/generate/data"
+	"github.com/business-ocean/bedev/common/itemselect"
+	"github.com/business-ocean/bedev/console/generate/gendata"
 	"github.com/business-ocean/bedev/console/generate/placeholder"
-	testfolder "github.com/business-ocean/bedev/console/generate/test_folder"
+	"github.com/business-ocean/bedev/console/generate/testfolder"
+
 	"github.com/business-ocean/bedev/console/generate/uuid"
 	"github.com/business-ocean/bedev/module"
 
+	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -44,12 +46,16 @@ func (r *generate) Short() string {
 
 func (r *generate) Setup(cmd *cobra.Command) {
 	cmd.AddCommand(GetSubCommands(module.CMDModules)...)
-	// cmd.Flags().IntVarP(&r.num, "num", "n", 10, "length of random number to generate")
 }
 
 func (r *generate) Run() cmd.CommandRunner {
-	return func(c *color.Color, m *listselect.ListModel) {
+	return func(c *color.Color) {
+		items := []list.Item{}
+		for key := range cmds {
+			items = append(items, itemselect.ListItem(key))
+		}
 
+		m := itemselect.NewListSelect(items)
 		if _, err := tea.NewProgram(m).Run(); err != nil {
 			fmt.Println("Error running program:", err)
 			os.Exit(1)

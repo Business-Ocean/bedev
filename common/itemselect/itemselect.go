@@ -1,4 +1,4 @@
-package listselect
+package itemselect
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ var (
 	quitTextStyle     = lipgloss.NewStyle().Margin(1, 0, 2, 4)
 )
 
-type item string
+type ListItem string
 
 type ListModel struct {
 	list     list.Model
@@ -35,7 +35,7 @@ func (d itemDelegate) Height() int                             { return 1 }
 func (d itemDelegate) Spacing() int                            { return 0 }
 func (d itemDelegate) Update(_ tea.Msg, _ *list.Model) tea.Cmd { return nil }
 func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
-	i, ok := listItem.(item)
+	i, ok := listItem.(ListItem)
 	if !ok {
 		return
 	}
@@ -69,7 +69,7 @@ func (m ListModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Quit
 
 		case "enter":
-			i, ok := m.list.SelectedItem().(item)
+			i, ok := m.list.SelectedItem().(ListItem)
 			if ok {
 				m.choice = string(i)
 			}
@@ -91,15 +91,15 @@ func (m ListModel) View() string {
 	}
 	return "\n" + m.list.View()
 }
-func (i item) FilterValue() string { return "" }
+func (i ListItem) FilterValue() string { return "" }
 
-func NewListSelect() *ListModel {
-	items := []list.Item{
-		item("uuid"),
-		item("placeholder"),
-		item("test_folder"),
-		item("data"),
-	}
+func NewListSelect(items []list.Item) *ListModel {
+	// items := []list.Item{
+	// 	item("uuid"),
+	// 	item("placeholder"),
+	// 	item("test_folder"),
+	// 	item("data"),
+	// }
 
 	const defaultWidth = 20
 	l := list.New(items, itemDelegate{}, defaultWidth, listHeight)
