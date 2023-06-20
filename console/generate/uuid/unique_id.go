@@ -2,6 +2,7 @@ package uuid
 
 import (
 	"math/rand"
+	"os"
 	"time"
 
 	"github.com/business-ocean/bedev/cmd"
@@ -32,7 +33,7 @@ func (r *uniqueId) Run() cmd.CommandRunner {
 		}
 
 		c.Printf("Unique Id : %v\n", string(b))
-
+		os.Exit(0)
 	}
 }
 

@@ -16,7 +16,6 @@ import (
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"go.uber.org/fx"
 )
@@ -49,18 +48,16 @@ func (r *generate) Setup(cmd *cobra.Command) {
 }
 
 func (r *generate) Run() cmd.CommandRunner {
-	return func(c *color.Color) {
+	return func() {
 		items := []list.Item{}
 		for key := range cmds {
 			items = append(items, itemselect.ListItem(key))
 		}
-		m := itemselect.NewListSelect(items, func(choice string) string {
-			c.Printf("-------||---%v----||------->\n", choice)
+		m := itemselect.NewListSelect(items, func(choice string) {
 			command, ok := cmds[choice]
-			c.Printf("----------%v----------->\n", ok)
-			c.Printf("----------%v----------->\n", command)
-			command.Run()
-			return ""
+			if ok {
+				common.ExecuteCmd(command, fx.Options())
+			}
 		})
 		if _, err := tea.NewProgram(m).Run(); err != nil {
 			fmt.Println("Error running program:", err)
