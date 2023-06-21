@@ -85,6 +85,12 @@ This command allows you to perform generate several thing.
 - Generate UUID base of time for user given desire input
 - Generate test replication of given directory into specefic test directory (help to cover TDD projects and test cretical software) ex:  route/do_something.go will generate empty test file in test/route/do_something_test.go 
 
+
+### 8. `bedev run`
+
+This command allows you to perform run script periodically from current directory.
+
+
 Example:
 bedev do rename-files --folder path/to/folder --format new-file-{{index}}.txt
 
