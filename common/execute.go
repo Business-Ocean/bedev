@@ -12,15 +12,11 @@ func ExecuteCmd(cmd cmd.Command, opt fx.Option) {
 		fx.Provide(module.NewColorConsole),
 		fx.Invoke(cmd.Run()),
 	)
-	// ctx := context.Background()
+	//  TODO(sourav): try running fx app start and stop
 	fx.New(
 		opt,
 		opts,
 		fx.NopLogger, // disable fx log message
 	).Run()
 
-	// fx.New(options,
-	// 	fx.Provide(module.NewColorConsole),
-	// 	fx.Invoke(command.Run()),
-	// 	fx.NopLogger).Run()
 }

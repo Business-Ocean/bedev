@@ -20,7 +20,7 @@ import (
 )
 
 var cmds = map[string]cmd.Command{
-	"uuid":        genid.NewUUIDCommand(),
+	"genid":       genid.NewUniqueIdCommand(),
 	"gendata":     gendata.NewGenDataCommand(),
 	"placeholder": placeholder.NewPlaceHolderCommand(),
 	"test_folder": testfolder.NewTestFolerCommand(),
@@ -67,6 +67,5 @@ func (r *generate) Run() cmd.CommandRunner {
 
 func NewGenerateCommand() *generate {
 	g := &generate{}
-
 	return g
 }
