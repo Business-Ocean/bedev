@@ -1,6 +1,6 @@
 /*
 Copyright © 2023 Sourav Kumar <businessocean.pvt.ltd@gmail.com>
-This file is part of CLI application foo.
+This file is part of CLI application bedev.
 */
 package main
 

@@ -26,7 +26,7 @@ func NewColorParams() *ColorParams {
 }
 
 type ColorParams struct {
-	fx.In
+	// fx.In
 	textColor color.Attribute
 	style     color.Attribute
 }

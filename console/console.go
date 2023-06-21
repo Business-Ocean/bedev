@@ -11,6 +11,7 @@ import (
 	"github.com/business-ocean/bedev/console/download"
 	"github.com/business-ocean/bedev/console/env"
 	"github.com/business-ocean/bedev/console/generate"
+	"github.com/business-ocean/bedev/console/run"
 	"github.com/spf13/cobra"
 	"go.uber.org/fx"
 )
@@ -24,6 +25,7 @@ var cmds = map[string]cmd.Command{
 	"download": download.NewDownloadCommand(),
 	"env":      env.NewEnvCommand(),
 	"generate": generate.NewGenerateCommand(),
+	"run":      run.NewRunCommand(),
 }
 
 // GetSubCommands gives a list of sub commands
