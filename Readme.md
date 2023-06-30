@@ -86,13 +86,23 @@ This command allows you to perform generate several thing.
 - Generate test replication of given directory into specefic test directory (help to cover TDD projects and test cretical software) ex:  route/do_something.go will generate empty test file in test/route/do_something_test.go 
 
 
-### 8. `bedev run`
+### 9. `bedev run`
 
 This command allows you to perform run script periodically from current directory.
 
 
 Example:
-bedev do rename-files --folder path/to/folder --format new-file-{{index}}.txt
+bedev run rename-files --folder path/to/folder --format new-file-{{index}}.txt
+
+
+
+### 10. `bedev get`
+
+This command allows you to get some scripts and info or token.
+
+
+Example:
+bedev get firebase token, gmail token, etc
 
 
 ## Contributing
@@ -125,6 +135,10 @@ Feel free to use this consolidated content for your README.md file.
 6. bedev env // see the environment variable of you os system in organised way
 
 7. bedev convert // convert png into jpeg . etc file
+
+8. bedev run // file
+
+9. bedev get // file
 
 
 ```

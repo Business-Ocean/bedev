@@ -7,6 +7,7 @@ import (
 	"github.com/business-ocean/bedev/cmd"
 	"github.com/business-ocean/bedev/common"
 	"github.com/business-ocean/bedev/common/itemselect"
+	"github.com/business-ocean/bedev/console/do/rename"
 	"github.com/business-ocean/bedev/console/do/sample"
 
 	"github.com/charmbracelet/bubbles/list"
@@ -17,6 +18,7 @@ import (
 
 var cmds = map[string]cmd.Command{
 	"sample": sample.NewSampleCommand(),
+	"rename": rename.NewRenameCommand(),
 }
 
 // GetSubCommands gives a list of sub commands
@@ -28,8 +30,7 @@ func getSubCommands(opt fx.Option) []*cobra.Command {
 	return subCommands
 }
 
-type do struct {
-}
+type do struct{}
 
 func (r *do) Short() string {
 	return "do command used for do some cool developer stuffs."
@@ -60,6 +61,5 @@ func (r *do) Run() cmd.CommandRunner {
 
 func NewDoCommand() *do {
 	g := &do{}
-
 	return g
 }
